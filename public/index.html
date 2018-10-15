@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+
+<head>
+	<title>User Ticket App</title>
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- loading scripts -->
+	<script type="text/javascript" src="lib/angular.js"></script>
+	<script type="text/javascript" src="lib/angular-route.js"></script>
+	<script type="text/javascript" src="js/module.js"></script>
+	<script type="text/javascript" src="js/controllers.js"></script>
+	<script type="text/javascript" src="js/directives.js"></script>
+	<script type="text/javascript" src="js/services.js"></script>
+
+</head>
+
+<body ng-controller='appCtrl' style="background-color: #eae8e8;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="panel panel-primary panel-margin">
+					<div class="panel-heading">
+						<h4>User Details </h4>
+					</div>
+					<div class="panel-body">
+
+						<!-- User Section to show users and their designation / add user -->
+						<a href="/" ng-click="show()">Show</a>
+						<a href="/" ng-click="showAdd = !showAdd; showUser = false;">Add</a>
+
+						<div scrolly="test()" class="scroll-div" ng-show="showUser">
+							User and their Designation
+
+							<div class="thumbnail thumbnail-div" ng-repeat="user in users">
+								<img ng-src="images/face-{{$index}}.jpg" alt="user" width="100px" height="80px" style = "margin-right: 5px;" >
+								<div class="caption">
+									<h4>{{user.username}}</h4>
+									<p>{{user.designation}}</p>
+								</div>
+							</div>
+
+						</div>
+						<div ng-if="showAdd">
+							<table class="table table-bordered">
+								<tr>
+									<td><strong>Name</strong></td>
+									<td><input type="text" ng-model="newUser.username"></td>
+								</tr>
+								<tr>
+									<td><strong>Designation</strong></td>
+									<td><input type="text" ng-model="newUser.designation"></td>
+								</tr>
+
+							</table>
+							<button class="btn btn-primary" ng-click="saveUser()">Save User</button>
+						</div>
+
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+
+</body>
+
+</html>
