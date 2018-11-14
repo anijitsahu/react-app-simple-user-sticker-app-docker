@@ -11,14 +11,13 @@ const dbOps = require('./dbOps')
 let router = express.Router()
 
 
-
 // middlewares
 router.use(cors())
 router.use(bodyParser.json({ type: 'application/json' }))
 router.use(morgan('dev'))
 
 // most important to serve static pages don't forget
-router.use(express.static('../public'))
+// router.use(express.static('../public'))
 
 router.get('/getallusers', (req, res)=>{
 	dbOps.connectDbAndRunQueries('getAllUsers', req, res)

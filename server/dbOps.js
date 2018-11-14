@@ -5,8 +5,7 @@ const ObjectId = mongodb.ObjectID
 
 const URI_TO_CONNECT_MONGODB = "mongodb+srv://root:root123@anijitsmongo-mwm6l.mongodb.net/allapps";
 const DB_NAME = "allapps"
-const COLLECTION_USERS = "users"
-const COLLECTION_ROOMS = "rooms"
+const COLLECTION_USER_STICKER = "usersticker"
 
 // this function will connect db and based on API send response
 let connectDbAndRunQueries = async (apiName, req, res) => {
@@ -41,14 +40,26 @@ let chooseApiAndSendResponse = (apiName, db, req, res, client, output) => {
 
 
 let makeGetAllUsers = async (db, req, res, client, output) => {
-	console.log('params received', req.params)
-	console.log('body of the req', req.body)
-	// let allMessages = sortMessagesFromSocket(req.body)
-	sendOutputAndCloseConnection(client, output, res)
+
+	try {
+
+		// db call 
+		let data = await db
+			.collection(COLLECTION_USER_STICKER)
+			.find({})
+			.toArray()
+
+		output = (data.length > 0) ? [...data] : []
+		sendOutputAndCloseConnection(client, output, res)
+
+	} catch (error) {
+		console.log('unable to get all the users', error)
+		sendOutputAndCloseConnection(client, output, res)
+	}
 }
 
 
-
+// send the response and close the db connection
 function sendOutputAndCloseConnection(client, output, res) {
 	if (output && res) {
 		console.log(`========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`, output)
