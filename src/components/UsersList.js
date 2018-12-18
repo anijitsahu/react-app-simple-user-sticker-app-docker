@@ -35,9 +35,14 @@ class UsersList extends Component {
   }
 
   render() {
+    let { users } = this.state
     return (
       <div className="users-list">
-        <ShowUser />
+        {
+          users.map((user) => {
+            return <ShowUser {...user} />
+          })
+        }
       </div>
     );
   }

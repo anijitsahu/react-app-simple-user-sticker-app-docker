@@ -2,10 +2,15 @@ import React from 'react';
 
 
 const ShowUser = (props) => {
+	let { name, designation } = props
 
 	// render from the ShowUser component
 	return (
-		<h1>user details</h1>
+		<div className="user-info">
+			<div className="user-name">{name}</div>
+			<div className="user-designation">{designation}</div>
+
+		</div>
 	);
 }
 
