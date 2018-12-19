@@ -27,7 +27,7 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 1. Clone the repository using `git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app.git` from `Git Bash / Command Prompt`
 2. Navigate inside the directory by `cd react-app-simple-user-sticker-app`
 3. Install all the necessary dependecies by using `npm install` 
-4. Navigate to the directory `server`
+4. Navigate to the directory `cd server`
 5. Run the server by `node server.js`
 5. Open the web browser and type`http://localhost:3000` in the address bar to load the application 
  
