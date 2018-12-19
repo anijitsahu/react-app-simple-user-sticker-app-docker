@@ -45,8 +45,8 @@ Desktop as well as Mobile version of the screenshots are given side by side.
 </p>
  
  <p> After scrolling to the bottom <br/> 
- <img src="screenshots/desktop 1.png" width="590px" title="After scrolling to the bottom  screen"/>
- <img src="screenshots/mobile 1.png" width="230px" title="After scrolling to the bottom  screen"/> 
+ <img src="screenshots/desktop 2.png" width="590px" title="After scrolling to the bottom  screen"/>
+ <img src="screenshots/mobile 2.png" width="230px" title="After scrolling to the bottom  screen"/> 
 </p>
 
 
