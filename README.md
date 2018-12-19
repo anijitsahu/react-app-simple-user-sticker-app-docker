@@ -29,7 +29,7 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 3. Install all the necessary dependecies by using `npm install` 
 4. Navigate to the directory `server`
 5. Run the server by `node server.js`
-5. Open the web browser and type`http://localhost:3000` in the address bar  
+5. Open the web browser and type`http://localhost:3000` in the address bar to load the application 
  
 *tested with <img src="screenshots/chrome.png" width="20px" title="Google Chrome">Google Chrome v70 and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">Mozilla Firefox Developer Editon*  
 
