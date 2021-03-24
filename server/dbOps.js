@@ -1,7 +1,7 @@
 // dependencies
 const { MongoClient } = require('mongodb');
 
-const URI_TO_CONNECT_MONGODB = "mongodb+srv://root:root123@anijitsmongo-mwm6l.mongodb.net/allapps?writeConcern=majority";
+const URI_TO_CONNECT_MONGODB = "mongodb+srv://root:root123@anijitsmongodb.l73ta.mongodb.net/allapps?retryWrites=true&w=majority";
 const DB_NAME = "allapps"
 const COLLECTION_USER_STICKER = "usersticker"
 
