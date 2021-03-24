@@ -1,5 +1,3 @@
-import React from 'react';
-
 // components 
 import Title from './components/Title';
 import UsersList from './components/UsersList';
@@ -8,15 +6,13 @@ import UsersList from './components/UsersList';
 import './css/style.css'
 
 const App = () => {
-  return (
-    <div className="container">
-    	{ /* including the Title as well as UsersList components */ }
-  		<Title />
-  		<UsersList />	
-  	</div>
-  );
+	return (
+		<div className="container">
+			{ /* including the Title as well as UsersList components */}
+			<Title />
+			<UsersList />
+		</div>
+	);
 };
-
-
 
 export default App;
