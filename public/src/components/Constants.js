@@ -11,7 +11,8 @@ const Constants = () => {
 		methods: {
 			GET: "GET",
 			POST: "POST"
-		}
+		},
+		permissibleUsersToShow: 5
 	}
 }
 

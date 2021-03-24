@@ -1890,7 +1890,8 @@ const Constants = () => {
     methods: {
       GET: "GET",
       POST: "POST"
-    }
+    },
+    permissibleUsersToShow: 5
   };
 };
 
@@ -1988,82 +1989,73 @@ __webpack_require__.r(__webpack_exports__);
 
  // components
 
- // permissible number of users to show
 
 
-const PERMISSIBLE_USERS_TO_SHOW = 5;
-
-class UsersList extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      totalUsers: 0,
-      currentIndex: 0,
-      allUsers: []
-    }; // initialize all of the Constants
-
-    this.allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_2__.default)();
-    this.handleScroll = this.handleScroll.bind(this);
-  } // when the component is mounted
 
 
-  componentDidMount() {
-    this.getAllUsers();
-  } // get all the users
+const UsersList = () => {
+  // Initial state and its modifier function
+  const [userData, setUserData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    users: [],
+    totalUsers: 0,
+    currentIndex: 0,
+    allUsers: []
+  }); // initialize all of the Constants
 
+  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_2__.default)(); // when the component is mounted
 
-  getAllUsers() {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    getAllUsers();
+  }, []); // get all the users
+
+  const getAllUsers = () => {
     axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: this.allConstants.methods.GET,
-      url: this.allConstants.getAllUsers
+      method: allConstants.methods.GET,
+      url: allConstants.getAllUsers
     }).then(response => {
-      let allUsers = [...response.data]; // fill the users array of the state
+      const allUsers = [...response.data]; // fill the users array of the state
 
-      this.setState({
+      setUserData({ ...userData,
         totalUsers: allUsers.length,
-        currentIndex: PERMISSIBLE_USERS_TO_SHOW,
+        currentIndex: allConstants.permissibleUsersToShow,
         allUsers
       });
     }).catch(error => {
       console.log('Some Error occurred...', error);
     });
-  }
+  };
 
-  handleScroll(event) {
-    event.persist();
-    let bottom = parseInt(event.target.scrollHeight - parseInt(event.target.scrollTop) - event.target.clientHeight); // fixing for Chrome
+  const handleScroll = e => {
+    const bottom = parseInt(e.target.scrollHeight - parseInt(e.target.scrollTop) - e.target.clientHeight); // fixing for Chrome
 
     if (bottom <= 1) {
       console.log('Bottom reached');
-      this.loadMoreUsers();
+      loadMoreUsers();
     }
-  }
+  };
 
-  loadMoreUsers() {
-    if (this.state.currentIndex < this.state.totalUsers) {
+  const loadMoreUsers = () => {
+    if (userData.currentIndex < userData.totalUsers) {
       // update the current index
-      this.setState((prevState, prevProps) => ({
-        currentIndex: prevState.currentIndex + PERMISSIBLE_USERS_TO_SHOW
-      }));
+      setUserData({ ...userData,
+        currentIndex: userData.currentIndex + allConstants.permissibleUsersToShow
+      });
     }
-  }
+  }; // copying predefined number of users from the state
+  // console.log('State before render', state)
 
-  render() {
-    // copying predefined number of users from the state
-    // console.log('State before render', this.state)
-    let users = this.state.allUsers.slice(0, this.state.currentIndex);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "users-list",
-      onScroll: this.handleScroll,
-      children: users.map(user => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ShowUser__WEBPACK_IMPORTED_MODULE_3__.default, { ...user
-        });
-      })
-    });
-  }
 
-}
+  const users = userData.allUsers.slice(0, userData.currentIndex);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "users-list",
+    onScroll: handleScroll,
+    children: users.map(user => {
+      return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ShowUser__WEBPACK_IMPORTED_MODULE_3__.default, { ...user,
+        key: user._id
+      });
+    })
+  });
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UsersList);
 
@@ -2090,7 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\nhtml {\n  font-size: 16px;\n  font-family: 'Roboto', sans-serif;\n}\n\n@media screen and (max-width: 500px) {\n\thtml {\n\t\tfont-size: 10px;\n\t}\n}\n\n.container {\n  display: grid;\n  grid-template-rows: 300 1fr;\n  grid-template-columns: 1fr;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n\n  /* margin to make it look good */\n  margin: 5%;\n}\n\n.title {\n  background-color: #ab14ab;\n  color: #fff;\n  padding: 1em;\n}\n\n.description {\n  padding: 1em;\n  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.italic {\n  font-style: italic;\n}\n\n.caption {\n  text-transform: uppercase;\n}\n\n/* Users List related */\n.users-list {\n  display: grid;\n  grid-template-columns: 1fr;\n  padding: 2em;\n  overflow-y: auto;\n  height: 50vh;\n}\n\n.user-info {\n  display: grid;\n  grid-template-columns: auto 3fr;\n  grid-gap: 5px;\n  padding: 1em;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n  margin-bottom: 1em;\n}\n\n.user-initials {\n  border-radius: 50px;\n  justify-self: start;\n  border: solid 1px #ddd;\n  padding: 0.9em;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  text-transform: uppercase;\n  \n  display: grid;\n  align-self: center;\n}\n\n.initial-contents {\n  justify-self: center;\n  align-self: center;\n}\n.user-name {\n  font-weight: 700;\n  padding: 1em;\n  text-transform: capitalize;\n  align-self: center;\n}\n\n.user-designation {\n  font-weight: 300;\n  margin-top: 3px;\n}\n\n\n/* scrollbar related */\n::-webkit-scrollbar {\n  width: 10px;  \n}\n\n::-webkit-scrollbar-thumb {\n  border-radius: 8px;\n  background-color: #ddd;\n}\n", "",{"version":3,"sources":["webpack://./src/css/style.css"],"names":[],"mappings":"AAEA;EACE,SAAS;EACT,UAAU;EACV,8BAA8B;EAC9B,2BAA2B;EAC3B,sBAAsB;AACxB;;AAEA;EACE,eAAe;EACf,iCAAiC;AACnC;;AAEA;CACC;EACC,eAAe;CAChB;AACD;;AAEA;EACE,aAAa;EACb,2BAA2B;EAC3B,0BAA0B;EAC1B,uCAAuC;;EAEvC,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,yBAAyB;EACzB,WAAW;EACX,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,iDAAiD;EACjD,yCAAyC;AAC3C;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA,uBAAuB;AACvB;EACE,aAAa;EACb,0BAA0B;EAC1B,YAAY;EACZ,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,+BAA+B;EAC/B,aAAa;EACb,YAAY;EACZ,sCAAsC;EACtC,kBAAkB;AACpB;;AAEA;EACE,mBAAmB;EACnB,mBAAmB;EACnB,sBAAsB;EACtB,cAAc;EACd,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,yBAAyB;;EAEzB,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB,kBAAkB;AACpB;AACA;EACE,gBAAgB;EAChB,YAAY;EACZ,0BAA0B;EAC1B,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,eAAe;AACjB;;;AAGA,sBAAsB;AACtB;EACE,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,sBAAsB;AACxB","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');\n\n* {\n  margin: 0;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\nhtml {\n  font-size: 16px;\n  font-family: 'Roboto', sans-serif;\n}\n\n@media screen and (max-width: 500px) {\n\thtml {\n\t\tfont-size: 10px;\n\t}\n}\n\n.container {\n  display: grid;\n  grid-template-rows: 300 1fr;\n  grid-template-columns: 1fr;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n\n  /* margin to make it look good */\n  margin: 5%;\n}\n\n.title {\n  background-color: #ab14ab;\n  color: #fff;\n  padding: 1em;\n}\n\n.description {\n  padding: 1em;\n  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.italic {\n  font-style: italic;\n}\n\n.caption {\n  text-transform: uppercase;\n}\n\n/* Users List related */\n.users-list {\n  display: grid;\n  grid-template-columns: 1fr;\n  padding: 2em;\n  overflow-y: auto;\n  height: 50vh;\n}\n\n.user-info {\n  display: grid;\n  grid-template-columns: auto 3fr;\n  grid-gap: 5px;\n  padding: 1em;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n  margin-bottom: 1em;\n}\n\n.user-initials {\n  border-radius: 50px;\n  justify-self: start;\n  border: solid 1px #ddd;\n  padding: 0.9em;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  text-transform: uppercase;\n  \n  display: grid;\n  align-self: center;\n}\n\n.initial-contents {\n  justify-self: center;\n  align-self: center;\n}\n.user-name {\n  font-weight: 700;\n  padding: 1em;\n  text-transform: capitalize;\n  align-self: center;\n}\n\n.user-designation {\n  font-weight: 300;\n  margin-top: 3px;\n}\n\n\n/* scrollbar related */\n::-webkit-scrollbar {\n  width: 10px;  \n}\n\n::-webkit-scrollbar-thumb {\n  border-radius: 8px;\n  background-color: #ddd;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n:root {\n  --font-small: 10px;\n  --font-regular: 16px;\n  --font-family: 'Roboto', sans-serif;\n\n  --font-weight-regular: 300;\n \n  --darker-grey: #4d4c4c;\n  --dark-grey: #ddd;\n  --light-grey: #eee;\n  --lighter-grey: #fff;\n\n  --light-purple: #ab14ab;\n\n  --light-red: #f02323;\n  --lighter-red: #e31a1a;\n\n  --light-shadow: rgba(0, 0, 0, 0.4);\n  --lighter-shadow: rgba(0, 0, 0, 0.2);\n}\n\nbody {\n  font-size: var(--font-regular);\n  font-family: var(--font-family);\n}\n\n.container {\n  display: grid;\n  grid-template-rows: 300 1fr;\n  grid-template-columns: 1fr;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n\n  /* margin to make it look good */\n  margin: 5% auto;\n  width: 50vw;\n}\n\n.title {\n  background-color: var(--light-purple);\n  color: var(--lighter-grey);\n  padding: 1em;\n}\n\n.description {\n  padding: 1em;\n  box-shadow: 0 2px 10px var(--lighter-shadow);\n}\n\n.italic {\n  font-style: italic;\n}\n\n.caption {\n  text-transform: uppercase;\n}\n\n/* Users List related */\n.users-list {\n  display: grid;\n  grid-template-columns: 1fr;\n  padding: 2em;\n  overflow-y: auto;\n  height: 50vh;\n}\n\n.user-info {\n  display: grid;\n  grid-template-columns: auto 3fr;\n  grid-gap: 5px;\n  padding: 1em;\n  box-shadow: 0 0 5px var(--light-shadow);\n  margin-bottom: 1em;\n}\n\n.user-initials {\n  border-radius: 50px;\n  justify-self: start;\n  border: solid 1px var(--light-grey);\n  padding: 0.9em;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  text-transform: uppercase;\n  \n  display: grid;\n  align-self: center;\n}\n\n.initial-contents {\n  justify-self: center;\n  align-self: center;\n}\n.user-name {\n  font-weight: 700;\n  padding: 1em;\n  text-transform: capitalize;\n  align-self: center;\n}\n\n.user-designation {\n  font-weight: 300;\n  margin-top: 3px;\n}\n\n@media screen and (max-width: 500px) {\n  body {\n    font-size: var(--font-small);\n  }\n\n  .container {\n    width: 90vw;\n  }\n}\n\n/* scrollbar related */\n::-webkit-scrollbar {\n  width: 10px;  \n}\n\n::-webkit-scrollbar-thumb {\n  border-radius: 8px;\n  background-color: var(--dark-grey);\n}\n", "",{"version":3,"sources":["webpack://./src/css/style.css"],"names":[],"mappings":"AAEA;EACE,SAAS;EACT,UAAU;EACV,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;EAClB,oBAAoB;EACpB,mCAAmC;;EAEnC,0BAA0B;;EAE1B,sBAAsB;EACtB,iBAAiB;EACjB,kBAAkB;EAClB,oBAAoB;;EAEpB,uBAAuB;;EAEvB,oBAAoB;EACpB,sBAAsB;;EAEtB,kCAAkC;EAClC,oCAAoC;AACtC;;AAEA;EACE,8BAA8B;EAC9B,+BAA+B;AACjC;;AAEA;EACE,aAAa;EACb,2BAA2B;EAC3B,0BAA0B;EAC1B,uCAAuC;;EAEvC,gCAAgC;EAChC,eAAe;EACf,WAAW;AACb;;AAEA;EACE,qCAAqC;EACrC,0BAA0B;EAC1B,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,4CAA4C;AAC9C;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA,uBAAuB;AACvB;EACE,aAAa;EACb,0BAA0B;EAC1B,YAAY;EACZ,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,+BAA+B;EAC/B,aAAa;EACb,YAAY;EACZ,uCAAuC;EACvC,kBAAkB;AACpB;;AAEA;EACE,mBAAmB;EACnB,mBAAmB;EACnB,mCAAmC;EACnC,cAAc;EACd,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,yBAAyB;;EAEzB,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB,kBAAkB;AACpB;AACA;EACE,gBAAgB;EAChB,YAAY;EACZ,0BAA0B;EAC1B,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE;IACE,4BAA4B;EAC9B;;EAEA;IACE,WAAW;EACb;AACF;;AAEA,sBAAsB;AACtB;EACE,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,kCAAkC;AACpC","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n:root {\n  --font-small: 10px;\n  --font-regular: 16px;\n  --font-family: 'Roboto', sans-serif;\n\n  --font-weight-regular: 300;\n \n  --darker-grey: #4d4c4c;\n  --dark-grey: #ddd;\n  --light-grey: #eee;\n  --lighter-grey: #fff;\n\n  --light-purple: #ab14ab;\n\n  --light-red: #f02323;\n  --lighter-red: #e31a1a;\n\n  --light-shadow: rgba(0, 0, 0, 0.4);\n  --lighter-shadow: rgba(0, 0, 0, 0.2);\n}\n\nbody {\n  font-size: var(--font-regular);\n  font-family: var(--font-family);\n}\n\n.container {\n  display: grid;\n  grid-template-rows: 300 1fr;\n  grid-template-columns: 1fr;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n\n  /* margin to make it look good */\n  margin: 5% auto;\n  width: 50vw;\n}\n\n.title {\n  background-color: var(--light-purple);\n  color: var(--lighter-grey);\n  padding: 1em;\n}\n\n.description {\n  padding: 1em;\n  box-shadow: 0 2px 10px var(--lighter-shadow);\n}\n\n.italic {\n  font-style: italic;\n}\n\n.caption {\n  text-transform: uppercase;\n}\n\n/* Users List related */\n.users-list {\n  display: grid;\n  grid-template-columns: 1fr;\n  padding: 2em;\n  overflow-y: auto;\n  height: 50vh;\n}\n\n.user-info {\n  display: grid;\n  grid-template-columns: auto 3fr;\n  grid-gap: 5px;\n  padding: 1em;\n  box-shadow: 0 0 5px var(--light-shadow);\n  margin-bottom: 1em;\n}\n\n.user-initials {\n  border-radius: 50px;\n  justify-self: start;\n  border: solid 1px var(--light-grey);\n  padding: 0.9em;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  text-transform: uppercase;\n  \n  display: grid;\n  align-self: center;\n}\n\n.initial-contents {\n  justify-self: center;\n  align-self: center;\n}\n.user-name {\n  font-weight: 700;\n  padding: 1em;\n  text-transform: capitalize;\n  align-self: center;\n}\n\n.user-designation {\n  font-weight: 300;\n  margin-top: 3px;\n}\n\n@media screen and (max-width: 500px) {\n  body {\n    font-size: var(--font-small);\n  }\n\n  .container {\n    width: 90vw;\n  }\n}\n\n/* scrollbar related */\n::-webkit-scrollbar {\n  width: 10px;  \n}\n\n::-webkit-scrollbar-thumb {\n  border-radius: 8px;\n  background-color: var(--dark-grey);\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
