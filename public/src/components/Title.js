@@ -1,13 +1,9 @@
-import React from 'react';
-
-const Title = () => {
+// Title component
+export default () => {
   return (
     <div className="title">
-	    <span className="caption">Simple <strong>User sticker</strong>
-	    </span>
+      <span className="caption">Simple <strong>User sticker</strong>
+      </span>
     </div>
   );
 };
-
-
-export default Title;

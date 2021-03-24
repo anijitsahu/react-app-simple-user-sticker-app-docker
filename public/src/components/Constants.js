@@ -1,14 +1,14 @@
 // Constants 
-class Constants {
-	constructor() {
+const Constants = () => {
+	const url = "http://localhost:3000/services"
+	return {
 		// base url
-		this.url = "http://localhost:3000/services";
-
+		url,
 		// other APIs urls
-		this.getAllUsers = `${this.url}/getallusers`
+		getAllUsers: `${url}/getallusers`,
 
 		// all HTTP verbs
-		this.methods = {
+		methods: {
 			GET: "GET",
 			POST: "POST"
 		}

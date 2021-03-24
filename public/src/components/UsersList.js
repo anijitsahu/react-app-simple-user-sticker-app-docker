@@ -21,7 +21,7 @@ class UsersList extends Component {
     }
 
     // initialize all of the Constants
-    this.allConstants = new Constants()
+    this.allConstants = Constants()
 
     this.handleScroll = this.handleScroll.bind(this)
   }

@@ -1,10 +1,5 @@
-import React from 'react';
-
-
-const ShowUser = (props) => {
-	let { name, designation } = props
-
-	// render from the ShowUser component
+// render from the ShowUser component
+export default ({ name, designation }) => {
 	return (
 		<div className="user-info">
 			<div className="user-initials">
@@ -16,5 +11,3 @@ const ShowUser = (props) => {
 		</div>
 	);
 }
-
-export default ShowUser;
