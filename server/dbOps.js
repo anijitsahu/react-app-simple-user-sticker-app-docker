@@ -1,5 +1,6 @@
 // dependencies
-const { MongoClient } = require('mongodb');
+import mongodb from 'mongodb';
+const { MongoClient } = mongodb
 
 const URI_TO_CONNECT_MONGODB = "mongodb+srv://root:root123@anijitsmongodb.l73ta.mongodb.net/allapps?retryWrites=true&w=majority";
 const DB_NAME = "allapps"
@@ -8,10 +9,10 @@ const COLLECTION_USER_STICKER = "usersticker"
 // this function will connect db and based on API send response
 const connectDbAndRunQueries = async (apiName, req, res) => {
 	try {
-		let client = await new MongoClient(URI_TO_CONNECT_MONGODB, { useNewUrlParser: true, useUnifiedTopology: true }).connect()
+		const client = await new MongoClient(URI_TO_CONNECT_MONGODB, { useNewUrlParser: true, useUnifiedTopology: true }).connect()
 		// select the db, Collections are selected based on needs
-		console.log('CLient as received', client)
 		const db = client.db(DB_NAME)
+
 		// default output
 		const output = { "message": "SUCCESS" }
 
@@ -39,12 +40,8 @@ const makeGetAllUsers = async (db, req, res, client, output) => {
 	try {
 
 		// db call 
-		const data = await db
-			.collection(COLLECTION_USER_STICKER)
-			.find({})
-			.toArray()
+		const data = await db.collection(COLLECTION_USER_STICKER).find({}).toArray()
 
-		console.log('Data as received', data)
 		output = (data.length > 0) ? [...data] : []
 	} catch (error) {
 		console.log('unable to get all the users', error)
@@ -67,6 +64,6 @@ function sendResponseAndCloseConnection(client, output, res) {
 }
 
 // exports
-module.exports = {
+export {
 	connectDbAndRunQueries
 }

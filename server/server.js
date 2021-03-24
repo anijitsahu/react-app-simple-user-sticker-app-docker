@@ -1,9 +1,9 @@
 // imports dependencies
-let express = require('express')
-let app = express()
+import express from 'express'
+const app = express()
 
 // router
-const router = require('./routes')
+import router from './routes.js'
 
 // PORT 3000
 const PORT = 3000
