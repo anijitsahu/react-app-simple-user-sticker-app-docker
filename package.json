@@ -1,6 +1,6 @@
 {
   "name": "react-app-simple-user-sticker-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A Simple User Sticker Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).",
   "main": "index.js",
   "scripts": {
