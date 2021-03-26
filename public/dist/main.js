@@ -2002,27 +2002,29 @@ const UsersList = () => {
     allUsers: []
   }); // initialize all of the Constants
 
-  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_2__.default)(); // when the component is mounted
+  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_2__.default)(); // when the component is mounted get all users from back end
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     getAllUsers();
   }, []); // get all the users
 
-  const getAllUsers = () => {
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: allConstants.methods.GET,
-      url: allConstants.getAllUsers
-    }).then(response => {
-      const allUsers = [...response.data]; // fill the users array of the state
+  const getAllUsers = async () => {
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: allConstants.methods.GET,
+        url: allConstants.getAllUsers
+      });
+      const allUsers = [...response.data];
+      console.log("response is here ", response); // fill the users array of the state
 
       setUserData({ ...userData,
         totalUsers: allUsers.length,
         currentIndex: allConstants.permissibleUsersToShow,
         allUsers
       });
-    }).catch(error => {
+    } catch (error) {
       console.log('Some Error occurred...', error);
-    });
+    }
   };
 
   const handleScroll = e => {
@@ -2042,7 +2044,6 @@ const UsersList = () => {
       });
     }
   }; // copying predefined number of users from the state
-  // console.log('State before render', state)
 
 
   const users = userData.allUsers.slice(0, userData.currentIndex);

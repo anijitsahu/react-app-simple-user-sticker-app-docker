@@ -21,31 +21,28 @@ const UsersList = () => {
   // initialize all of the Constants
   const allConstants = Constants()
 
-  // when the component is mounted
+  // when the component is mounted get all users from back end
   useEffect(() => {
     getAllUsers()
   }, [])
 
   // get all the users
-  const getAllUsers = () => {
-    axios({
-      method: allConstants.methods.GET,
-      url: allConstants.getAllUsers
-    })
-      .then((response) => {
-        const allUsers = [...response.data]
+  const getAllUsers = async () => {
+    try {
+      const response = await axios({ method: allConstants.methods.GET, url: allConstants.getAllUsers })
+      const allUsers = [...response.data]
+      console.log("response is here ", response)
 
-        // fill the users array of the state
-        setUserData({
-          ...userData,
-          totalUsers: allUsers.length,
-          currentIndex: allConstants.permissibleUsersToShow,
-          allUsers
-        })
+      // fill the users array of the state
+      setUserData({
+        ...userData,
+        totalUsers: allUsers.length,
+        currentIndex: allConstants.permissibleUsersToShow,
+        allUsers
       })
-      .catch((error) => {
-        console.log('Some Error occurred...', error)
-      })
+    } catch (error) {
+      console.log('Some Error occurred...', error)
+    }
   }
 
   const handleScroll = (e) => {
@@ -61,15 +58,11 @@ const UsersList = () => {
   const loadMoreUsers = () => {
     if (userData.currentIndex < userData.totalUsers) {
       // update the current index
-      setUserData({
-        ...userData,
-        currentIndex: userData.currentIndex + allConstants.permissibleUsersToShow
-      })
+      setUserData({ ...userData, currentIndex: userData.currentIndex + allConstants.permissibleUsersToShow })
     }
   }
 
   // copying predefined number of users from the state
-  // console.log('State before render', state)
   const users = userData.allUsers.slice(0, userData.currentIndex)
 
   return (
