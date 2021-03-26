@@ -25,6 +25,9 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 - This is Simple Users Sticker Application
 - It is a Full Stack Application
 - All the users details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
+
+<br/>
+
 - Application uses *lazy loading* feature
 - Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
 
