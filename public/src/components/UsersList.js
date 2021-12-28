@@ -1,22 +1,20 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 // Constants
-import Constants from './Constants'
+import Constants from "./Constants"
 
 // components
-import ShowUser from './ShowUser'
+import ShowUser from "./ShowUser"
 
 const UsersList = () => {
-
   // Initial state and its modifier function
-  const [userData, setUserData] = useState(
-    {
-      users: [],
-      totalUsers: 0,
-      currentIndex: 0,
-      allUsers: []
-    })
+  const [userData, setUserData] = useState({
+    users: [],
+    totalUsers: 0,
+    currentIndex: 0,
+    allUsers: [],
+  })
 
   // initialize all of the Constants
   const allConstants = Constants()
@@ -29,7 +27,10 @@ const UsersList = () => {
   // get all the users
   const getAllUsers = async () => {
     try {
-      const response = await axios({ method: allConstants.methods.GET, url: allConstants.getAllUsers })
+      const response = await axios({
+        method: allConstants.methods.GET,
+        url: allConstants.getAllUsers,
+      })
       const allUsers = [...response.data]
       console.log("response is here ", response)
 
@@ -38,19 +39,23 @@ const UsersList = () => {
         ...userData,
         totalUsers: allUsers.length,
         currentIndex: allConstants.permissibleUsersToShow,
-        allUsers
+        allUsers,
       })
     } catch (error) {
-      console.log('Some Error occurred...', error)
+      console.log("Some Error occurred...", error)
     }
   }
 
   const handleScroll = (e) => {
-    const bottom = parseInt(e.target.scrollHeight - parseInt(e.target.scrollTop) - e.target.clientHeight)
+    const bottom = parseInt(
+      e.target.scrollHeight -
+        parseInt(e.target.scrollTop) -
+        e.target.clientHeight
+    )
 
     // fixing for Chrome
     if (bottom <= 1) {
-      console.log('Bottom reached')
+      console.log("Bottom reached")
       loadMoreUsers()
     }
   }
@@ -58,7 +63,11 @@ const UsersList = () => {
   const loadMoreUsers = () => {
     if (userData.currentIndex < userData.totalUsers) {
       // update the current index
-      setUserData({ ...userData, currentIndex: userData.currentIndex + allConstants.permissibleUsersToShow })
+      setUserData({
+        ...userData,
+        currentIndex:
+          userData.currentIndex + allConstants.permissibleUsersToShow,
+      })
     }
   }
 
@@ -67,13 +76,11 @@ const UsersList = () => {
 
   return (
     <div className="users-list" onScroll={handleScroll}>
-      {
-        users.map((user) => {
-          return <ShowUser {...user} key={user._id} />
-        })
-      }
+      {users.map((user) => {
+        return <ShowUser {...user} key={user._id} />
+      })}
     </div>
-  );
+  )
 }
 
-export default UsersList;
+export default UsersList

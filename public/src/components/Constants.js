@@ -1,4 +1,4 @@
-// Constants 
+// Constants
 const Constants = () => {
 	const url = "http://localhost:3000/services"
 	return {
@@ -10,10 +10,10 @@ const Constants = () => {
 		// all HTTP verbs
 		methods: {
 			GET: "GET",
-			POST: "POST"
+			POST: "POST",
 		},
-		permissibleUsersToShow: 5
+		permissibleUsersToShow: 5,
 	}
 }
 
-export default Constants;
+export default Constants
