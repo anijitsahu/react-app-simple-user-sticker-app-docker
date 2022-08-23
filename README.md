@@ -15,44 +15,44 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 
 ## Features
-- Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 15](https://nodejs.org/en/docs/)
-- Latest features of JavaScript i.e. ES6, ES7, ES8 is used
-- [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
-- ES8 `async/await` is used
+1. Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 15](https://nodejs.org/en/docs/)
+2. Latest features of JavaScript i.e. ES6, ES7, ES8 is used
+3. [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
+4. ES8 `async/await` is used
 
 <br/>
 
-- This is Simple Users Sticker Application
-- It is a Full Stack Application
-- All the users details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
+5. This is Simple Users Sticker Application
+6. It is a Full Stack Application
+7. All the users details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
 
 <br/>
 
-- Application uses *lazy loading* feature
-- Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
+8. Application uses *lazy loading* feature
+9. Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
 
 
 ## Installation
 
 Clone the repository:
-```
+```bash
 git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app.git
 ```
 Navigate inside the directory: 
-```
+```bash
 cd react-app-simple-user-sticker-app
 ```
 Install all the necessary dependecies: 
-```
+```bash
 npm install
 ``` 
 Run the server: 
-```
+```bash
 npm run server
 ```
 Open the web browser and type`http://localhost:3000` in the address bar to load the application 
  
-*tested with <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome 89](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">[Mozilla Firefox 86](https://www.mozilla.org/en-US/firefox/new/)*  
+*tested with latest versions of  <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Mozilla Firefox">[Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)*  
 
 ## Screenshots
 
