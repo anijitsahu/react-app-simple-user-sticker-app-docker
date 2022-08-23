@@ -1,9 +1,12 @@
 // imports dependencies
-import express, { Router } from "express";
+import { Router } from "express";
 
 // local file dependencies
-import { connectDbAndRunQueries } from "./dbOps.js";
-import { comparePassword, generatePasswordHash } from "./passwordOps.js";
+import { connectDbAndRunQueries } from "../helpers/dbOps.js";
+import {
+  comparePassword,
+  generatePasswordHash,
+} from "../helpers/passwordOps.js";
 
 const router = Router();
 

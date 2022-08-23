@@ -1,6 +1,5 @@
 // dependencies
-import mongodb from "mongodb";
-const { MongoClient } = mongodb;
+import { MongoClient } from "mongodb";
 
 const {
   URI_TO_CONNECT_MONGODB,
@@ -13,10 +12,7 @@ const {
 // this function will connect db and based on API send response
 const connectDbAndRunQueries = async (apiName, req, res) => {
   try {
-    const client = await new MongoClient(URI_TO_CONNECT_MONGODB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }).connect();
+    const client = new MongoClient(URI_TO_CONNECT_MONGODB);
     // select the db, Collections are selected based on needs
     const db = client.db(DB_NAME);
 
@@ -57,7 +53,7 @@ const makeGetAllUsers = async (db, req, res, client, output) => {
 };
 
 // send the response and close the db connection
-function sendResponseAndCloseConnection(client, output, res) {
+async function sendResponseAndCloseConnection(client, output, res) {
   if (output && res) {
     console.log(
       `========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`,
@@ -69,7 +65,7 @@ function sendResponseAndCloseConnection(client, output, res) {
   }
 
   // close the database connection after sending the response
-  client.close();
+  await client.close();
 }
 
 // exports

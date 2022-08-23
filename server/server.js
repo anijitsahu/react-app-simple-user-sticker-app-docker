@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // local file dependencies
-import router from "./routes.js";
+import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.static(path.join(__dirname, "../public/dist")));
 
 // different routes
-app.use("/services", router);
+app.use("/services", userRouter);
 
 // listen
 app.listen(process.env.PORT, () => {
