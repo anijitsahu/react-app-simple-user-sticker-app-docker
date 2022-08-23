@@ -1,12 +1,12 @@
 // imports dependencies
-import express, { Router } from "express"
+import express, { Router } from "express";
 
 // local file dependencies
-import { connectDbAndRunQueries } from "./dbOps.js"
-const router = Router()
+import { connectDbAndRunQueries } from "./dbOps.js";
+const router = Router();
 
 router.get("/getallusers", (req, res) => {
-	connectDbAndRunQueries("getAllUsers", req, res)
-})
+  connectDbAndRunQueries("getAllUsers", req, res);
+});
 
-export default router
+export default router;
