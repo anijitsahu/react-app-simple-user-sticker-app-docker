@@ -12,7 +12,7 @@ For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS
 Back end is implemented using [Node JS](https://nodejs.org/en/docs/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the _Cloud_ version of [MongoDB](https://docs.mongodb.com/)
 is used.
 
-[Docker](https://docs.docker.com/language/nodejs/build-images/) is used to containerize the application.
+[Docker](https://docs.docker.com/language/nodejs/build-images/) is used to *containerize* the application.
 
 This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
@@ -33,7 +33,7 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
 8. Application uses _lazy loading_ feature
 9. Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
-10. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to containerize the application.
+10. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to **containerize** the application.
 
 <!---
 <ul>
