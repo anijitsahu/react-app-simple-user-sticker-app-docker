@@ -79,10 +79,10 @@ Install using docker:
 # build the image
 $ sudo docker build --tag user-sticker-server .
 
-# list all the images 
+# list all the images (optional)
 $ sudo docker images
 
-# run the container (in detach mode and publish the corresponding port and with a name)
+# run the container (in detach mode and publish the corresponding port, with a name)
 sudo docker run --detach --publish 3000:3000 --name user-sticker-app user-sticker-server
 
 # list all container processes
