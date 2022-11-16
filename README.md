@@ -12,11 +12,13 @@ For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS
 Back end is implemented using [Node JS](https://nodejs.org/en/docs/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the _Cloud_ version of [MongoDB](https://docs.mongodb.com/)
 is used.
 
+Docker[https://docs.docker.com/language/nodejs/build-images/] is used to containerize the application.
+
 This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
 ## Features
 
-1. Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 15](https://nodejs.org/en/docs/)
+1. Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 18](https://nodejs.org/en/docs/)
 2. Latest features of JavaScript i.e. ES6, ES7, ES8 is used
 3. [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
 4. ES8 `async/await` is used
@@ -31,7 +33,7 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
 8. Application uses _lazy loading_ feature
 9. Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
-
+10. Docker[https://docs.docker.com/language/nodejs/build-images/] is used to containerize the application.
 
 <!---
 <ul>
@@ -62,26 +64,38 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 Clone the repository:
 
 ```bash
-git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app.git
+$ git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app.git
 ```
 
 Navigate inside the directory:
 
 ```bash
-cd react-app-simple-user-sticker-app
+$ cd react-app-simple-user-sticker-app
 ```
 
-Install all the necessary dependecies:
+Install using docker:
 
 ```bash
-npm install
+# build the image
+$ sudo docker build --tag user-sticker-server .
+
+# list all the images 
+$ sudo docker images
+
+# run the container (in detach mode and publish the corresponding port and with a name)
+sudo docker run --detach --publish 3000:3000 --name user-sticker-app user-sticker-server
+
+# list all container processes
+sudo docker ps --all
+
+# stop the container and remove it from the system (optional)
+sudo docker stop user-sticker-app
+sudo docker rm user-sticker-app
+
+# delete the image itself (optional)
+sudo docker rmi user-sticker-server
 ```
 
-Run the server:
-
-```bash
-npm run server
-```
 
 Open the web browser and type`http://localhost:3000` in the address bar to load the application
 
