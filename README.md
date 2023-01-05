@@ -1,4 +1,4 @@
-# react-app-simple-user-sticker-app
+# react-app-simple-user-sticker-app-docker
 
 A Simple User Sticker Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
 
@@ -64,13 +64,13 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 Clone the repository:
 
 ```bash
-$ git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app.git
+$ git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app-docker.git
 ```
 
 Navigate inside the directory:
 
 ```bash
-$ cd react-app-simple-user-sticker-app
+$ cd react-app-simple-user-sticker-app-docker
 ```
 
 Install using docker:
