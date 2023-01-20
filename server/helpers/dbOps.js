@@ -1,6 +1,9 @@
 // dependencies
 import { MongoClient } from "mongodb";
 
+// logger
+import { logger } from "./logOps.js";
+
 const {
   URI_TO_CONNECT_MONGODB,
   DB_NAME,
@@ -22,7 +25,7 @@ const connectDbAndRunQueries = async (apiName, req, res) => {
     // perform several db actions based on API names
     chooseApiAndSendResponse(apiName, db, req, res, client, output);
   } catch (err) {
-    console.log("Some Error occurred ...", err);
+    logger.info("Some Error occurred ...", err);
     res.status(SERVER_ERR).json({ msg: "Internal Server Error" });
   }
 };
@@ -46,7 +49,7 @@ const makeGetAllUsers = async (db, req, res, client, output) => {
       .toArray();
     output = data.length > 0 ? [...data] : [];
   } catch (error) {
-    console.log("unable to get all the users", error);
+    logger.info("unable to get all the users", error);
   } finally {
     sendResponseAndCloseConnection(client, output, res);
   }
@@ -55,7 +58,7 @@ const makeGetAllUsers = async (db, req, res, client, output) => {
 // send the response and close the db connection
 async function sendResponseAndCloseConnection(client, output, res) {
   if (output && res) {
-    console.log(
+    logger.info(
       `========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`,
       output
     );

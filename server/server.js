@@ -10,6 +10,7 @@ const __dirname = dirname(__filename);
 
 // local file dependencies
 import userRouter from "./routes/userRoutes.js";
+import { logger } from "./helpers/logOps.js";
 
 const app = express();
 
@@ -27,5 +28,5 @@ app.use("/services", userRouter);
 
 // listen
 app.listen(process.env.PORT, () => {
-  console.log("Server is running on ", process.env.PORT);
+  logger.info("Server is running on ", process.env.PORT);
 });
