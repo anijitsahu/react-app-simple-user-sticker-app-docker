@@ -35,6 +35,7 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 9. Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
 10. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to **containerize** the application.
 
+11. Winston logging added.
 <!---
 <ul>
   <li> This is Simple set of Authentication APIs </li> 
