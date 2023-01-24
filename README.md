@@ -18,7 +18,7 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
 ## Features
 
-1. Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 18](https://nodejs.org/en/docs/)
+1. Code is rewritten with [React JS 18](https://reactjs.org/docs/getting-started.html) and [Node JS 18](https://nodejs.org/en/docs/)
 2. Latest features of JavaScript i.e. ES6, ES7, ES8 is used
 3. [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
 4. ES8 `async/await` is used
@@ -36,6 +36,9 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 10. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to **containerize** the application.
 
 11. [Winston](https://github.com/winstonjs/winston#readme) logging added.
+12. API call is done using [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+
 <!---
 <ul>
   <li> This is Simple set of Authentication APIs </li> 
