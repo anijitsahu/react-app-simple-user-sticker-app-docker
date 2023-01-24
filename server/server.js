@@ -1,7 +1,6 @@
 // imports dependencies
 import express from "express";
 import cors from "cors";
-import morgan from "morgan";
 import helmet from "helmet";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
@@ -17,7 +16,6 @@ const app = express();
 // middlewares
 app.use(cors());
 app.use(express.json({ type: "application/json" }));
-app.use(morgan("dev"));
 app.use(helmet({ contentSecurityPolicy: false }));
 
 // serve the static pages
