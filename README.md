@@ -85,17 +85,17 @@ $ sudo docker build --tag user-sticker-server .
 $ sudo docker images
 
 # run the container (in detach mode and publish the corresponding port, with a name)
-sudo docker run --detach --publish 3000:3000 --name user-sticker-app user-sticker-server
+$ sudo docker run --detach --publish 3000:3000 --name user-sticker-app user-sticker-server
 
 # list all container processes
-sudo docker ps --all
+$ sudo docker ps --all
 
 # stop the container and remove it from the system (optional)
-sudo docker stop user-sticker-app
-sudo docker rm user-sticker-app
+$ sudo docker stop user-sticker-app
+$ sudo docker rm user-sticker-app
 
 # delete the image itself (optional)
-sudo docker rmi user-sticker-server
+$ sudo docker rmi user-sticker-server
 ```
 
 Open the web browser and type`http://localhost:3000` in the address bar to load the application
