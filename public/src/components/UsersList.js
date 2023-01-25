@@ -26,15 +26,15 @@ const UsersList = () => {
   // get all the users
   const getAllUsers = async () => {
     try {
-      const responseFetch = await fetch(allConstants.getAllUsers, {
+      const response = await fetch(allConstants.getAllUsers, {
         method: allConstants.methods.GET,
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const response = await response.json();
-      const allUsers = [...response.data];
       console.log("response is here ", response);
+      const responseJSON = await response.json();
+      const allUsers = [...responseJSON];
 
       // fill the users array of the state
       setUserData({
@@ -49,12 +49,8 @@ const UsersList = () => {
   };
 
   const handleScroll = (e) => {
-    const bottom = parseInt(
-      e.target.scrollHeight -
-        parseInt(e.target.scrollTop) -
-        e.target.clientHeight
-    );
-
+    const { scrollHeight, scrollTop, clientHeight } = e.target;
+    const bottom = scrollHeight - parseInt(scrollTop) - clientHeight;
     // fixing for Chrome
     if (bottom <= 1) {
       console.log("Bottom reached");
