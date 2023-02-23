@@ -39,10 +39,11 @@ router.post("/createUser", async (req, res) => {
             if (err) {
               handleError(err, res);
             }
-            res.status(200).json({
+            output = {
               msg: "user created successfully",
               userCreated: { email, name: name || email },
-            });
+            };
+            sendResponse(SUCCESS, output, res);
           }
         );
       } catch (err) {
