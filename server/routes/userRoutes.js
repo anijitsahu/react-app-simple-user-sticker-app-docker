@@ -8,6 +8,7 @@ import {
   generatePasswordHash,
 } from "../helpers/passwordOps.js";
 import { sendResponse } from "../helpers/sendResponse.js";
+// import "../userlist.json";
 
 const router = Router();
 const { SUCCESS, NOT_FOUND, SERVER_ERR } = process.env;
@@ -15,6 +16,9 @@ const { SUCCESS, NOT_FOUND, SERVER_ERR } = process.env;
 router.get("/getallusers", (req, res) => {
   getAllUsers(req, res);
 });
+
+// list of InMemory users
+const USERS = [];
 
 // creates a new user
 router.post("/createUser", async (req, res) => {
@@ -30,22 +34,11 @@ router.post("/createUser", async (req, res) => {
         // add bcrypt here
         const passwordHash = await generatePasswordHash(password, 5);
         USERS[email] = { name: name || email, password: passwordHash };
-
-        fs.writeFile(
-          "./userlist.json",
-          JSON.stringify(USERS),
-          "utf8",
-          (err) => {
-            if (err) {
-              handleError(err, res);
-            }
-            output = {
-              msg: "user created successfully",
-              userCreated: { email, name: name || email },
-            };
-            sendResponse(SUCCESS, output, res);
-          }
-        );
+        output = {
+          msg: "user created successfully",
+          userCreated: { email, name: name || email },
+        };
+        sendResponse(SUCCESS, output, res);
       } catch (err) {
         handleError(err, res);
       }
@@ -109,11 +102,6 @@ router.put("/resetCredentials", async (req, res) => {
         delete USERS[email];
       }
 
-      fs.writeFile("./userlist.json", JSON.stringify(USERS), "utf8", (err) => {
-        if (err) {
-          handleError(err, res);
-        }
-      });
       output = { msg: "Password reset successfully" };
       sendResponse(SUCCESS, output, res);
     } else {

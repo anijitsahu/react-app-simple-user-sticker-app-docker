@@ -28,3 +28,6 @@ app.use("/services", userRouter);
 app.listen(process.env.PORT, () => {
   logger.info("Server is running on ", process.env.PORT);
 });
+
+// to test the app uncomment the following
+// export default app;
