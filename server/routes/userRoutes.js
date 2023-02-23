@@ -7,8 +7,10 @@ import {
   comparePassword,
   generatePasswordHash,
 } from "../helpers/passwordOps.js";
+import { sendResponse } from "../helpers/sendResponse.js";
 
 const router = Router();
+const { SUCCESS, NOT_FOUND, SERVER_ERR } = process.env;
 
 router.get("/getallusers", (req, res) => {
   getAllUsers(req, res);
@@ -20,6 +22,7 @@ router.post("/createUser", async (req, res) => {
   const { email, name, password } = req.body;
   const emailRegex = /^\w\S{3,}@\D{2,5}\.\D{2,3}/;
 
+  let output;
   // if no user exists having the same email id
   if (!USERS[email] && emailRegex.test(email)) {
     if (password) {
@@ -46,10 +49,12 @@ router.post("/createUser", async (req, res) => {
         handleError(err, res);
       }
     } else {
-      res.status(400).json({ msg: "Please enter username and password" });
+      output = { msg: "Please enter username and password" };
+      sendResponse(NOT_FOUND, output, res);
     }
   } else {
-    res.status(400).json({ msg: "User already exists or Invalid EmailId" });
+    output = { msg: "User already exists or Invalid EmailId" };
+    sendResponse(NOT_FOUND, output, res);
   }
 });
 
@@ -62,10 +67,10 @@ router.post("/login", async (req, res) => {
       console.log("Is same received", isSame);
 
       isSame
-        ? res.status(200).json({ name: USERS[email]["name"], email })
-        : res.status(404).json({ msg: "wrong credentials" });
+        ? sendResponse(SUCCESS, { name: USERS[email]["name"], email }, res)
+        : sendResponse(NOT_FOUND, { msg: "wrong credentials" }, res);
     } else {
-      res.status(404).json({ msg: "wrong credentials" });
+      sendResponse(NOT_FOUND, { msg: "wrong credentials" }, res);
     }
   } catch (err) {
     handleError(err, res);
@@ -75,16 +80,20 @@ router.post("/login", async (req, res) => {
 // forget
 router.post("/forget/:email", (req, res) => {
   const { email } = req.params;
+  let output;
   if (USERS[email]) {
-    res.status(200).json({ msg: "Enter new password", resetPassword: true });
+    output = { msg: "Enter new password", resetPassword: true };
+    sendResponse(SUCCESS, output, res);
   } else {
-    res.status(400).json({ msg: "User does not exists" });
+    output = { msg: "User does not exists" };
+    sendResponse(NOT_FOUND, output, res);
   }
 });
 
 // reset credentials
 router.put("/resetCredentials", async (req, res) => {
   let { email, resetPassword, resetEmail } = req.body;
+  let output;
   try {
     if (USERS[email]) {
       if (resetPassword) {
@@ -104,9 +113,11 @@ router.put("/resetCredentials", async (req, res) => {
           handleError(err, res);
         }
       });
-      res.status(200).json({ msg: "Password reset successfully" });
+      output = { msg: "Password reset successfully" };
+      sendResponse(SUCCESS, output, res);
     } else {
-      res.status(400).json({ msg: "User does not exists" });
+      output = { msg: "User does not exists" };
+      sendResponse(NOT_FOUND, output, res);
     }
   } catch (err) {
     handleError(err, res);
@@ -115,7 +126,8 @@ router.put("/resetCredentials", async (req, res) => {
 
 const handleError = (err, res) => {
   console.log("error occurred", err);
-  res.status(500).json({ msg: "Internal server error" });
+  let output = { msg: "Internal server error" };
+  sendResponse(SERVER_ERR, output, res);
 };
 
 export default router;
