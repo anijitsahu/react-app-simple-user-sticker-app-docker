@@ -4,7 +4,7 @@
   "description": "A Simple User Sticker Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "node --experimental-vm-modules  node_modules/jest/bin/jest.js --detectOpenHandles",
     "server": "node -r dotenv/config server/server.js dotenv_config_path=server/.env"
   },
   "repository": {
