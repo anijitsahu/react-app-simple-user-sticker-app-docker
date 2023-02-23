@@ -88,7 +88,7 @@ __webpack_require__.r(__webpack_exports__);
       className: "user-initials",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "initial-contents",
-        children: name.substr(0, 2)
+        children: `${name.substr(0, 1)}${name.indexOf(" ") !== -1 ? name.substr(name.indexOf(" ") + 1, 1) : ""}`
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
       className: "user-name",
@@ -180,8 +180,8 @@ const UsersList = () => {
           "Content-Type": "application/json"
         }
       });
-      console.log("response is here ", response);
       const responseJSON = await response.json();
+      console.log("response is here ", responseJSON);
       const allUsers = [...responseJSON];
 
       // fill the users array of the state
@@ -223,12 +223,12 @@ const UsersList = () => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
     className: "users-list",
     onScroll: handleScroll,
-    children: users.map(user => {
+    children: users?.length > 0 ? users.map(user => {
       return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ShowUser__WEBPACK_IMPORTED_MODULE_2__["default"], {
         ...user,
         key: user._id
       });
-    })
+    }) : "Loading users..."
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UsersList);

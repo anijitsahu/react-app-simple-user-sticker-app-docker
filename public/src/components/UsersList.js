@@ -32,8 +32,9 @@ const UsersList = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log("response is here ", response);
+
       const responseJSON = await response.json();
+      console.log("response is here ", responseJSON);
       const allUsers = [...responseJSON];
 
       // fill the users array of the state
@@ -74,9 +75,11 @@ const UsersList = () => {
 
   return (
     <section className="users-list" onScroll={handleScroll}>
-      {users.map((user) => {
-        return <ShowUser {...user} key={user._id} />;
-      })}
+      {users?.length > 0
+        ? users.map((user) => {
+            return <ShowUser {...user} key={user._id} />;
+          })
+        : "Loading users..."}
     </section>
   );
 };
