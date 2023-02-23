@@ -1,75 +1,39 @@
 // dependencies
-import { MongoClient } from "mongodb";
+
+import { sendResponse } from "./sendResponse.js";
+import {
+  createConnectionToDB,
+  closeConnectionToDB,
+  selectDB,
+} from "./dbHelpers.js";
 
 // logger
 import { logger } from "./logOps.js";
 
-const {
-  URI_TO_CONNECT_MONGODB,
-  DB_NAME,
-  COLLECTION_USER_STICKER,
-  SUCCESS,
-  SERVER_ERR,
-} = process.env;
+const { COLLECTION_USER_STICKER, SUCCESS, SERVER_ERR } = process.env;
 
-// this function will connect db and based on API send response
-const connectDbAndRunQueries = async (apiName, req, res) => {
+const getAllUsers = async (req, res) => {
+  const dbClient = createConnectionToDB();
+
   try {
-    const client = new MongoClient(URI_TO_CONNECT_MONGODB);
-    // select the db, Collections are selected based on needs
-    const db = client.db(DB_NAME);
+    const db = selectDB(dbClient);
 
-    // default output
-    const output = { message: "SUCCESS" };
-
-    // perform several db actions based on API names
-    chooseApiAndSendResponse(apiName, db, req, res, client, output);
-  } catch (err) {
-    logger.info("Some Error occurred ...", err);
-    res.status(SERVER_ERR).json({ msg: "Internal Server Error" });
-  }
-};
-
-// choose the particular function for an API and process it
-const chooseApiAndSendResponse = (apiName, db, req, res, client, output) => {
-  // perform db specific ops based on API names
-  switch (apiName) {
-    case "getAllUsers":
-      makeGetAllUsers(db, req, res, client, output);
-      break;
-  }
-};
-
-const makeGetAllUsers = async (db, req, res, client, output) => {
-  try {
     // db call
     const data = await db
       .collection(COLLECTION_USER_STICKER)
       .find({})
       .toArray();
-    output = data.length > 0 ? [...data] : [];
+
+    let output = data.length > 0 ? [...data] : [];
+    sendResponse(SUCCESS, output, res);
   } catch (error) {
+    let output = { message: "FAILED", error: JSON.stringify(error) };
     logger.info("unable to get all the users", error);
+    sendResponse(SERVER_ERR, output, res);
   } finally {
-    sendResponseAndCloseConnection(client, output, res);
+    await closeConnectionToDB(dbClient);
   }
 };
 
-// send the response and close the db connection
-async function sendResponseAndCloseConnection(client, output, res) {
-  if (output && res) {
-    logger.info(
-      `========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`,
-      output
-    );
-    res.status(SUCCESS).json(output);
-  } else {
-    res.status(SERVER_ERR).json({ msg: "Internal Server Error" });
-  }
-
-  // close the database connection after sending the response
-  await client.close();
-}
-
 // exports
-export { connectDbAndRunQueries };
+export { getAllUsers };

@@ -2,7 +2,7 @@
 import { Router } from "express";
 
 // local file dependencies
-import { connectDbAndRunQueries } from "../helpers/dbOps.js";
+import { getAllUsers } from "../helpers/dbOps.js";
 import {
   comparePassword,
   generatePasswordHash,
@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 router.get("/getallusers", (req, res) => {
-  connectDbAndRunQueries("getAllUsers", req, res);
+  getAllUsers(req, res);
 });
 
 // creates a new user
