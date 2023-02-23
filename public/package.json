@@ -1,5 +1,5 @@
 {
-  "name": "react-app-simple-user-sticker-app",
+  "name": "react-app-simple-user-sticker-app-docker",
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
@@ -7,16 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "dev": "webpack --mode development"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anijitsahu/react-app-simple-user-sticker-app.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/anijitsahu/react-app-simple-user-sticker-app/issues"
-  },
-  "homepage": "https://github.com/anijitsahu/react-app-simple-user-sticker-app#readme"
+  }
 }

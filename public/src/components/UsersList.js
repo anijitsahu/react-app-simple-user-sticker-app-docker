@@ -73,11 +73,11 @@ const UsersList = () => {
   const users = userData.allUsers.slice(0, userData.currentIndex);
 
   return (
-    <div className="users-list" onScroll={handleScroll}>
+    <section className="users-list" onScroll={handleScroll}>
       {users.map((user) => {
         return <ShowUser {...user} key={user._id} />;
       })}
-    </div>
+    </section>
   );
 };
 

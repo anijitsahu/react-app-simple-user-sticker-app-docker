@@ -1,10 +1,10 @@
 // Title component
 export default () => {
   return (
-    <div className="title">
+    <header className="title">
       <span className="caption">
         Simple <strong>User sticker</strong>
       </span>
-    </div>
-  )
-}
+    </header>
+  );
+};

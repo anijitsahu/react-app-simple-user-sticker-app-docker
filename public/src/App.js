@@ -1,18 +1,18 @@
 // components
-import Title from "./components/Title"
-import UsersList from "./components/UsersList"
+import Title from "./components/Title";
+import UsersList from "./components/UsersList";
 
 // css
-import "./css/style.css"
+import "./css/style.css";
 
 const App = () => {
-	return (
-		<div className="container">
-			{/* including the Title as well as UsersList components */}
-			<Title />
-			<UsersList />
-		</div>
-	)
-}
+  return (
+    <main className="container">
+      {/* including the Title as well as UsersList components */}
+      <Title />
+      <UsersList />
+    </main>
+  );
+};
 
-export default App
+export default App;
