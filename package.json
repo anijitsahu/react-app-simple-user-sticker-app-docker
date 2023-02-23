@@ -4,7 +4,7 @@
   "description": "A Simple User Sticker Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "server": "node -r dotenv/config server/server.js dotenv_config_path=server/.env"
   },
   "repository": {
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/anijitsahu/react-app-simple-user-sticker-app-docker#readme",
   "devDependencies": {
+    "jest": "^29.4.3",
+    "supertest": "^6.3.3",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
@@ -38,5 +40,8 @@
     "react-dom": "^18.2.0",
     "style-loader": "^3.3.1",
     "winston": "^3.8.2"
+  },
+  "jest": {
+    "collectCoverage": true
   }
 }
