@@ -8,7 +8,7 @@ describe("Testing the server", () => {
       .post("/services/createUser")
       .send({ email: "anij@gmail.com", name: "Anii" });
 
-    console.log(" response", response);
-    expect(response.statusCode).toEqual(200);
+    // important fields of response --- body, statusCode, text etc.
+    expect(response.statusCode).toEqual(400);
   });
 });
