@@ -25,9 +25,12 @@ app.use(express.static(path.join(__dirname, "../public/dist")));
 app.use("/services", userRouter);
 
 // listen
-app.listen(process.env.PORT, () => {
-  logger.info("Server is running on ", process.env.PORT);
-});
+function listen() {
+  app.listen(process.env.PORT, () => {
+    logger.info("Server is running on ", process.env.PORT);
+  });
+}
 
 // to test the app uncomment the following
 // export default app;
+listen();
