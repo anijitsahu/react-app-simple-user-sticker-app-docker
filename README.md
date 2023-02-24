@@ -19,7 +19,7 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 ## Features
 
 1. Code is rewritten with [React JS 18](https://reactjs.org/docs/getting-started.html) and [Node JS 18](https://nodejs.org/en/docs/)
-2. Latest features of JavaScript i.e. ES6, ES7, ES8 is used
+2. Latest features of JavaScript i.e. ESNext is used
 3. [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
 4. ES8 `async/await` is used
 
