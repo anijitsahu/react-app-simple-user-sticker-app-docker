@@ -35,13 +35,15 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 9. Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
 10. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to **containerize** the application.
 
+<br/>
+
 11. [Winston](https://github.com/winstonjs/winston#readme) logging added.
 12. API call is done using [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
-
+13. **Test Cases** are written using [Jest](https://jestjs.io/docs/getting-started) and [Supertest](https://www.npmjs.com/package/supertest)
 
 <!---
 <ul>
-  <li> This is Simple set of Authentication APIs </li> 
+  <li> This is Simple set of Authentication APIs </li>
   <li> All the common features like <strong>use creation, email validation, login, checking for authenticity of the user</strong> is implemented</li>
 </ul>
 
@@ -50,13 +52,13 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 <ul>
  <li><b>Forget password</b> feature is implemented </li>
  <li><b>Reset password</b> as well as email id feature is added </li>
- <li>All the user details, email id, password is stored in a file <code>server/userlist.json</code>. <b>All the passwords are encrypted</b>.</li> 
+ <li>All the user details, email id, password is stored in a file <code>server/userlist.json</code>. <b>All the passwords are encrypted</b>.</li>
 </ul>
 
 <ul>
   <li><i>Ready to use</i> REST APIs </li>
-  <li>Can be consumed by <i>any</i> Frontend application framework that supports REST API</li>   
-  <li>Can be used in conjunction with other popular JavaScript framework like <a href="https://reactjs.org/">ReactJS</a></li>  
+  <li>Can be consumed by <i>any</i> Frontend application framework that supports REST API</li>
+  <li>Can be used in conjunction with other popular JavaScript framework like <a href="https://reactjs.org/">ReactJS</a></li>
 </ul>
 
 -->
