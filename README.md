@@ -68,7 +68,7 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 Clone the repository:
 
 ```bash
-$ git clone https://github.com/anijitsahu/react-app-simple-user-sticker-app-docker.git
+$ git clone https://github.com/anijitsao/react-app-simple-user-sticker-app-docker.git
 ```
 
 Navigate inside the directory:
