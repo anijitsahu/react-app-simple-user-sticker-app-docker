@@ -18,19 +18,19 @@ Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS
 
 <br/>
 
-5. This is Full Stack Simple Users Sticker Application.
-6. All the users details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This example uses a _free/ shared_ account. **So Please use it wisely**.
+3. This is Full Stack Simple Users Sticker Application.
+4. All the users details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This example uses a _free/ shared_ account. **So Please use it wisely**.
 
 <br/>
 
-7. Application uses _lazy loading_ feature i.e. application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
-8. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to **containerize** the application.
+5. Application uses _lazy loading_ feature i.e. application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
+6. [Docker](https://docs.docker.com/language/nodejs/build-images/) is used to **containerize** the application.
 
 <br/>
 
-9. [Winston](https://github.com/winstonjs/winston#readme) logging added.
-10. API call is done using [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
-11. **Test Cases** are written using [Jest](https://jestjs.io/docs/getting-started) and [Supertest](https://www.npmjs.com/package/supertest).
+7. [Winston](https://github.com/winstonjs/winston#readme) logging added.
+8. API call is done using [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+9. **Test Cases** are written using [Jest](https://jestjs.io/docs/getting-started) and [Supertest](https://www.npmjs.com/package/supertest).
 
 <!---
 <ul>
@@ -66,13 +66,13 @@ Install using docker:
 
 ```bash
 # build the image
-$ sudo docker build --tag user-sticker-server .
+$ sudo docker build --tag user-sticker-server-image .
 
 # list all the images (optional)
 $ sudo docker images
 
 # run the container (in detach mode and publish the corresponding port, with a name)
-$ sudo docker run --detach --publish 3000:3000 --name user-sticker-app user-sticker-server
+$ sudo docker run --detach --publish 3000:3000 --name user-sticker-app user-sticker-server-image
 
 # list all container processes
 $ sudo docker ps --all
@@ -82,7 +82,7 @@ $ sudo docker stop user-sticker-app
 $ sudo docker rm user-sticker-app
 
 # delete the image itself (optional)
-$ sudo docker rmi user-sticker-server
+$ sudo docker rmi user-sticker-server-image
 ```
 
 Open the web browser and type`http://localhost:3000` in the address bar to load the application.
